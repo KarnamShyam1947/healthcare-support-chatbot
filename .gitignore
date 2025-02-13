@@ -1,0 +1,19 @@
+# Python Virtual Environment 
+env
+.env
+
+.vscode
+
+__pycache__
+**/__pycache__
+*.py[cod]
+*$py.class
+
+# Unwanted and test file for my self
+test.jpg
+test.ogg
+web_scrap.py
+demo.py
+test.py
+*.wav
+test_images
