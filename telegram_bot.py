@@ -88,7 +88,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_error(update: Update, context):
     print("Error..........")
     
-    await update.message.reply_text("error at bot")
+    await update.message.reply_text("error at bot. your developer is trying to resolve it. please try after some time")
 
 # Main Function to Run Bot
 def start_bot():
@@ -100,7 +100,7 @@ def start_bot():
     app.add_handler(MessageHandler(filters.AUDIO | filters.VOICE, handle_audio))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))  # Text handler
 
-    # app.add_error_handler(handle_error)
+    app.add_error_handler(handle_error)
     
     print("🤖 Bot is running...")
     app.run_polling()
