@@ -11,7 +11,7 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose the port the app runs on (Optional)
-# EXPOSE 8080
+EXPOSE 8080
 
 # Command to run your bot
 CMD ["python", "telegram_bot.py"]

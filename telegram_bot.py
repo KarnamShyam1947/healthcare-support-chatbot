@@ -43,7 +43,8 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     print(update.message.caption)
     
-    await update.message.reply_text(f"📸 Photo received in {lang}. Now send an audio file or text.")
+    # await update.message.reply_text(f"📸 Photo received in {lang}. Now send an audio file or text.")
+    await update.message.reply_text(f"📸 Photo received.....[This feature is under implementation]")
 
 # Handle Audio Upload
 async def handle_audio(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -62,7 +63,8 @@ async def handle_audio(update: Update, context: ContextTypes.DEFAULT_TYPE):
     file = await new_file.download_to_drive(custom_path = f"test_{user_id}.ogg")
     
     
-    await update.message.reply_text(f"🎤 Audio received in {lang}. Processing...")
+    # await update.message.reply_text(f"🎤 Audio received in {lang}. Processing...")
+    await update.message.reply_text(f"🎤 Audio received.....[This feature is under implementation]")
 
 # Handle Text Messages
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
