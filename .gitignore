@@ -10,6 +10,7 @@ __pycache__
 *$py.class
 
 # Unwanted and test file for my self
+*.jpg
 test.jpg
 test.ogg
 web_scrap.py

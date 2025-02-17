@@ -1,7 +1,7 @@
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
-from utils.LLMUtils import analyze_with_query
-from utils.FileUtils import markdown_to_text
+from utils.LLMUtils import analyze_with_query, analyze_image_with_query
+from utils.FileUtils import markdown_to_text, encode_image
 from datetime import datetime
 import os
 
@@ -41,10 +41,16 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     new_file = await update.message.effective_attachment[-1].get_file()
     file = await new_file.download_to_drive(custom_path = f"test_{user_id}.jpg")
     
-    print(update.message.caption)
-    
+    prompt = update.message.caption if update.message.caption is not None \
+                                else "Explain me what is their in the image"
+                                
+    image_bytes = encode_image(f"test_{user_id}.jpg")
+    response = analyze_image_with_query(prompt, image_bytes)
+    response_txt = markdown_to_text(response)
+                                
     # await update.message.reply_text(f"📸 Photo received in {lang}. Now send an audio file or text.")
-    await update.message.reply_text(f"📸 Photo received.....[This feature is under implementation]")
+    # await update.message.reply_text(f"📸 Photo received.....[This feature is under implementation]")
+    await update.message.reply_text(response_txt)
 
 # Handle Audio Upload
 async def handle_audio(update: Update, context: ContextTypes.DEFAULT_TYPE):
